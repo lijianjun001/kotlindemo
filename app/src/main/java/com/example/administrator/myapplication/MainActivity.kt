@@ -1,6 +1,7 @@
 package com.example.administrator.myapplication
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -26,7 +27,10 @@ class MainActivity : AppCompatActivity() {
         listdata.add(User("vvv"))
         listdata.add(User("vfff"))
         listView.adapter = MyAdapter(this,listdata.stream().filter { it.username.contains("v")}.collect(Collectors.toList()))
-        listView.onItemClickListener= AdapterView.OnItemClickListener { adapterView, view, i, l ->Toast.makeText(this,"人${l}",Toast.LENGTH_LONG).show()  }
+        listView.onItemClickListener= AdapterView.OnItemClickListener { adapterView, view, i, l ->Toast.makeText(this,"人${l}",Toast.LENGTH_LONG).show()
+        var i=Intent(this,KotlinAct2::class.java)
+            startActivity(i);
+        }
     }
 
     class MyAdapter(var context: Context,var list:List<User>) : BaseAdapter() {
@@ -52,4 +56,5 @@ class MainActivity : AppCompatActivity() {
 
     }
     data class User(var username:String)
+
 }
